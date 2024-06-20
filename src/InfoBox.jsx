@@ -1,6 +1,10 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import AirIcon from '@mui/icons-material/Air';
+import CompressIcon from '@mui/icons-material/Compress';
 import './InfoBox.css';
 import { Thunderstorm, AcUnit, WbSunny } from '@mui/icons-material';
 
@@ -13,20 +17,26 @@ export default function InfoBox({data}) {
     return (
         <div className="infobox">
             <div className="cardContainer">
-            <Card sx={{height: 400, width: 480}}>
-                <CardContent>
-                <p>{data.city}
-                {data.humidity > 80 ? <Thunderstorm fontSize='large'></Thunderstorm> : data.temp > 15? <WbSunny></WbSunny> : <AcUnit></AcUnit>}
-                </p>
-                <Typography variant="body2" color="text. secondary" component='span'>
-                    <p>Temperature: {data.temp}&deg;C</p>
-                    <p>Humidity: {data.humidity}</p>
-                    <p>Min Temp: {data.tempMin}&deg;C</p>
-                    <p>Max Temp: {data.tempMax}&deg;C</p>
-                    <p>The weather can be described as <i>{data.weather}</i> and feels like {data.feelsLike}&deg;C</p>
-                </Typography>
-                </CardContent>
-            </Card>
+            <div className='card'>
+                <div className="card-head">
+                    <div className="head-info">
+                        <p>{data.temp}&deg;C</p> | {data.weather}
+                    </div>
+                    <div className="head-img">
+                        {data.humidity > 80 ? <Thunderstorm ></Thunderstorm> : data.temp > 15? <WbSunny></WbSunny> : <AcUnit></AcUnit>}
+                    </div>
+                </div>
+                <div className="city">
+                    {data.city}
+                </div>
+                <div className="card-body">
+                    <h3>Weather info</h3>
+                    <p><LightModeIcon fontSize='large'/> {data.sunrise}</p>
+                    <p><WaterDropIcon fontSize='large'/> {data.humidity}</p>
+                    <p><AirIcon fontSize='large'/>{data.wind}</p>
+                    <p><CompressIcon fontSize='large'/>{data.pressure}</p>
+                </div>
+            </div>
             </div>
         </div>
     )
