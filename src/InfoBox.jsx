@@ -1,12 +1,8 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import AirIcon from '@mui/icons-material/Air';
 import CompressIcon from '@mui/icons-material/Compress';
 import './InfoBox.css';
-import { Thunderstorm, AcUnit, WbSunny } from '@mui/icons-material';
 
 export default function InfoBox({data}) {
 
@@ -20,21 +16,21 @@ export default function InfoBox({data}) {
             <div className='card'>
                 <div className="card-head">
                     <div className="head-info">
-                        <p>{data.temp}&deg;C</p> | {data.weather}
+                        <p>{data.temp}&deg;C</p>| {data.weather}
                     </div>
                     <div className="head-img">
-                        {data.humidity > 80 ? <Thunderstorm ></Thunderstorm> : data.temp > 15? <WbSunny></WbSunny> : <AcUnit></AcUnit>}
+                        <img src={`https://openweathermap.org/img/wn/${data.weatherImg}@2x.png`} alt="" />
                     </div>
                 </div>
                 <div className="city">
-                    {data.city}
+                    {data.city}, {data.country}
                 </div>
+                <h3 className='weatherInfo'>Weather info</h3>
                 <div className="card-body">
-                    <h3>Weather info</h3>
-                    <p><LightModeIcon fontSize='large'/> {data.sunrise}</p>
-                    <p><WaterDropIcon fontSize='large'/> {data.humidity}</p>
-                    <p><AirIcon fontSize='large'/>{data.wind}</p>
-                    <p><CompressIcon fontSize='large'/>{data.pressure}</p>
+                    <p><LightModeIcon fontSize='large' className='icons'/> {data.sunrise} A.M.</p>
+                    <p><WaterDropIcon fontSize='large' className='icons'/> {data.humidity}</p>
+                    <p><AirIcon fontSize='large' className='icons'/>{data.wind}</p>
+                    <p><CompressIcon fontSize='large' className='icons'/>{data.pressure} mmHg</p>
                 </div>
             </div>
             </div>

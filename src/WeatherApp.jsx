@@ -1,17 +1,19 @@
 import SearchBox from "./SearchBox"
 import InfoBox from "./InfoBox"
 import { useState } from "react"
+import './WeatherApp.css'
 
 export default function WeatherApp() {
 
     let [weatherInfo, setWeatherInfo] = useState({
         city: 'Pune',
-        feelsLike: 24.84,
         humidity: 33,
         temp: 25.05,
-        tempMax: 25.05,
-        tempMin: 25.05,
-        weather: "scattered clouds"
+        weather: "scattered clouds",
+        sunrise: '06:00',
+        pressure: 2154,
+        country: 'India',
+        wind: 5.05
     });
 
     let updateInfo = (result) => {
@@ -19,10 +21,12 @@ export default function WeatherApp() {
     }
 
     return(
-        <div className="weatherapp" style={{ textAlign: "center"}}>    
-            <h2>Weatherly</h2>
-            <SearchBox updateInfo={updateInfo}></SearchBox>
-            <InfoBox data={weatherInfo}></InfoBox>
-        </div>
+        <>
+            <h2 className="header">Weatherly</h2>
+            <div className="weatherapp" style={{ textAlign: "center"}}>    
+                <SearchBox updateInfo={updateInfo}></SearchBox>
+                <InfoBox data={weatherInfo}></InfoBox>
+            </div>
+        </>
     )
 }

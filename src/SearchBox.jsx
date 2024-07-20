@@ -1,10 +1,10 @@
 import { TextField, Button } from "@mui/material"
 import Send from '@mui/icons-material/Send'
 import './SearchBox.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function SearchBox({updateInfo}) {
-    let [city, setCity] = useState('');
+    let [city, setCity] = useState('satara');
     let [error, setError] = useState(false);
 
     // const API_KEY = process.env.KEY;
@@ -23,11 +23,11 @@ export default function SearchBox({updateInfo}) {
 
     function convertPressure(pressure) {
         const mmHg = pressure * 0.75006156;
-        return mmHg;
+        return mmHg.toFixed('2');
     }
 
     // convertTime(1718843402);
-
+    
     let fetchData = async () => {
         try {
             let url = `${API_URL}?q=${city}&appid=${API_KEY}&units=metric`;
@@ -39,6 +39,7 @@ export default function SearchBox({updateInfo}) {
                 temp: result.main.temp,
                 humidity: result.main.humidity,
                 weather: result.weather[0].description,
+                weatherImg: result.weather[0].icon,
                 pressure: convertPressure(result.main.pressure),
                 country: result.sys.country,
                 sunrise: convertTime(result.sys.sunrise),
@@ -51,7 +52,15 @@ export default function SearchBox({updateInfo}) {
             throw err;
         }
     }
-
+    
+    useEffect(() => {
+        const x = async () => {
+            const data = await fetchData();
+            updateInfo(data);
+            setCity('');
+        }
+        x();
+    }, []);
     let handleChange = (event) => {
         setCity(event.target.value); 
     }
@@ -75,7 +84,7 @@ export default function SearchBox({updateInfo}) {
         <div className="SearchBox">
             <form onSubmit={handleSubmit}>
                 <p className="heading">Find the weather of your city</p>
-                <input type="text" id="city" placeholder="City Name" name="city" value={city} onChange={handleChange} required></input>
+                <input className="cityInput" type="text" id="city" placeholder="City Name" name="city" value={city} onChange={handleChange} required></input>
                 <Button variant="contained" type="submit" className="submitBtn"><Send></Send></Button>
                 {error && <p style={{color: "red"}}>No data for this place!</p>}
             </form>

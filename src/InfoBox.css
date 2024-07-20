@@ -4,6 +4,9 @@
     padding: 10px 0px;
     text-align: center;
     background-color: #fff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.46);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 
 .cardContainer, .card {
@@ -24,6 +27,11 @@
     justify-content: space-evenly;
 }
 
+.mainIcon {
+    font-size: 4rem !important;
+    opacity: 0.8;
+}
+
 .head-info {
     display: flex;
     align-items: baseline;
@@ -31,5 +39,37 @@
 }
 
 .head-info p {
-    font-size: 3rem;
+    font-size: 2.5rem;
+}
+
+.city {
+    font-size: 2rem;
+}
+
+.card-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+}
+
+.card-body p {
+    width: 5rem;
+    height: 5rem;
+    /* border: solid 1px black; */
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.icons {
+    font-size: 4rem !important;
+    opacity: 0.8;
+}
+
+.weatherInfo {
+    margin-top: 1rem;
+    font-size: 1.5rem;
 }
